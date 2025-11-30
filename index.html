@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>ISHANT Technology - Shramik Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f0f4ff;
+            color: #333;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            background: linear-gradient(90deg, #1565c0, #1e88e5);
+            color: #fff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            color: #1565c0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .brand-text {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* NAV TABS */
+        .nav-tabs {
+            background: #1976d2;
+            padding: 0 16px;
+        }
+
+        .nav-tabs-inner {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .tab-link {
+            border: none;
+            background: transparent;
+            color: #e3f2fd;
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .tab-link.active {
+            background: #0d47a1;
+            border-radius: 6px 6px 0 0;
+            color: #fff;
+        }
+
+        /* PAGE BODY */
+        .page {
+            max-width: 960px;
+            margin: 16px auto 40px;
+            padding: 0 12px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 16px;
+            margin-top: 8px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        /* FORM */
+        form label {
+            display: block;
+            margin: 8px 0 4px;
+            font-size: 14px;
+        }
+
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #c5cae9;
+            font-size: 14px;
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .btn {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .btn:hover {
+            background: #0d47a1;
+        }
+
+        .info-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffb300;
+            padding: 10px 12px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .status-text {
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        .status-text.error { color: #c62828; }
+        .status-text.ok    { color: #2e7d32; }
+
+        /* SIMPLE TEXT LISTS */
+        .list-item {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .highlight { font-weight: bold; }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background: #e3f2fd;
+        }
+        .check-cell, .delete-cell {
+            text-align: center;
+        }
+
+        .del-btn {
+            border: none;
+            background: #e53935;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .del-btn:hover {
+            background: #b71c1c;
+        }
+
+        /* WHATSAPP FLOATING BUTTON */
+        .wa-float {
+            position: fixed;
+            right: 16px;
+            bottom: 20px;
+            z-index: 200;
+        }
+
+        .wa-main-btn {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .wa-popup {
+            position: absolute;
+            right: 0;
+            bottom: 46px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            padding: 8px;
+            width: 210px;
+            display: none;
+        }
+
+        .wa-popup-header {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .wa-number-btn {
+            width: 100%;
+            border: none;
+            background: #e8f5e9;
+            padding: 6px 8px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .wa-number-btn:hover {
+            background: #c8e6c9;
+        }
+
+        .wa-close {
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .form-message {
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .form-message.ok { color: #2e7d32; }
+        .form-message.error { color: #c62828; }
+
+        @media (max-width: 600px) {
+            .brand-text { font-size: 16px; }
+            .tab-link { font-size: 13px; padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="logo-circle">IT</div>
+        <div class="brand-text">Ishant Technology - श्रमिक पंजीकरण पोर्टल</div>
+    </div>
+
+    <!-- NAV TABS -->
+    <div class="nav-tabs">
+        <div class="nav-tabs-inner">
+            <button class="tab-link active" data-tab="home">Home</button>
+            <button class="tab-link" data-tab="services">Services</button>
+            <button class="tab-link" data-tab="schemes">Schemes</button>
+            <button class="tab-link" data-tab="about">About</button>
+            <button class="tab-link" data-tab="contact">Contact</button>
+            <button class="tab-link" data-tab="list">List</button>
+        </div>
+    </div>
+
+    <div class="page">
+
+        <!-- HOME TAB (Welcome + Form) -->
+        <div id="tab-home" class="card tab-content">
+            <h2>श्रमिक पंजीकरण फॉर्म</h2>
+            <p class="subtitle">
+                यहाँ पर आप श्रमिक पंजीकरण फॉर्म भर सकते हैं। आपका डेटा सीधे Google Sheet डेटाबेस में सेव हो जाएगा।
+            </p>
+
+            <div class="info-box">
+                <b>सूचना :</b> श्रमिक पंजीकरण आवेदन होने के बाद आपको तुरंत संपर्क किया जाएगा।  
+                यदि श्रमिक पंजीकरण का पेमेंट नहीं देते हैं तो पंजीकरण निरस्त कर दिया जाएगा और भविष्य में दोबारा पंजीकरण नहीं हो सकेगा।
+            </div>
+
+            <form id="shramikForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="workerName">श्रमिक नाम *</label>
+                        <input type="text" id="workerName" name="workerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">जन्म तिथि *</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aadhaar">आधार नंबर *</label>
+                        <input type="text" id="aadhaar" name="aadhaar" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mobile">मोबाइल नंबर (श्रमिक) *</label>
+                        <input type="tel" id="mobile" name="mobile" required>
+                        <div id="mobileStatus" class="status-text"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tehsil">तहसील *</label>
+                        <select id="tehsil" name="tehsil" required>
+                            <option value="">तहसील चुनें</option>
+                            <option value="नवाबगंज">नवाबगंज</option>
+                            <option value="फतेहपुर">फतेहपुर</option>
+                            <option value="रामसनेहीघाट">रामसनेहीघाट</option>
+                            <option value="हैदरगढ़">हैदरगढ़</option>
+                            <option value="रामनगर">रामनगर</option>
+                            <option value="सिरौली">सिरौली</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="block">ब्लॉक *</label>
+                        <select id="block" name="block" required>
+                            <option value="">ब्लॉक चुनें</option>
+                            <option value="बंकी">बंकी</option>
+                            <option value="मसौली">मसौली</option>
+                            <option value="देवा">देवा</option>
+                            <option value="हरख">हरख</option>
+                            <option value="फतेहपुर">फतेहपुर</option>
+                            <option value="हैदरगढ़">हैदरगढ़</option>
+                            <option value="दरियाबाद">दरियाबाद</option>
+                            <option value="सूरतगंज">सूरतगंज</option>
+                            <option value="सिद्धौर">सिद्धौर</option>
+                            <option value="पूरे डलई">पूरे डलई</option>
+                            <option value="निन्दूरा">निन्दूरा</option>
+                            <option value="त्रिवेदीगंज">त्रिवेदीगंज</option>
+                            <option value="रामनगर">रामनगर</option>
+                            <option value="सिरौली ग़ौसपुर">सिरौली ग़ौसपुर</option>
+                            <option value="बनीकोडर">बनीकोडर</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pincode">पिन कोड *</label>
+                        <input type="text" id="pincode" name="pincode" required>
+                    </div>
+                    <div class="form-group" style="flex: 2;">
+                        <label for="address">पूरा पता *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="applicantName">आवेदक का नाम *</label>
+                        <input type="text" id="applicantName" name="applicantName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicantMobile">आवेदक का मोबाइल नंबर *</label>
+                        <input type="tel" id="applicantMobile" name="applicantMobile" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn">पंजीकरण सेव करें</button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+        <!-- SERVICES TAB -->
+        <div id="tab-services" class="card tab-content" style="display:none;">
+            <h2>हमारी डिजिटल सेवाएं</h2>
+            <p class="subtitle">ISHANT Technology द्वारा दी जाने वाली मुख्य डिजिटल सेवाएं:</p>
+
+            <div class="list-item">⏩ आधार मोबाइल नंबर यू <span class="highlight">(WITHOUT OTP &amp; FINGERPRINT)</span></div>
+            <div class="list-item">⏩ आधार एड्रेस अपडेट <span class="highlight">NEED AADHAR OTP</span></div>
+            <div class="list-item">⏩ आधार नंबर से <span class="highlight">PAN NUMBER</span></div>
+            <div class="list-item">⏩ आधार नंबर से <span class="highlight">RASAN CARD</span></div>
+            <div class="list-item">⏩ आधार नंबर से <span class="highlight">AADHAR PDF</span></div>
+            <div class="list-item">⏩ जन्म प्रमाण पत्र</div>
+            <div class="list-item">⏩ राशन कार्ड न से आधार नंबर</div>
+
+            <h3 style="margin-top:16px; font-size:16px;">श्रमिक कार्ड से संबंधित सेवाएं</h3>
+            <div class="list-item">✅ नया कार्ड बनवाना ₹100 (1 वर्ष)</div>
+            <div class="list-item">✅ रिनिवल जमा करना बिना ओटीपी या ओटीपी से</div>
+            <div class="list-item">✅ रिनिवल में पेनल्टी हटाना</div>
+            <div class="list-item">✅ आधार वेरिफिकेशन पेंडिंग हटवाना</div>
+            <div class="list-item">✅ श्रमिक कार्ड में मोबाइल नंबर लगवाना</div>
+            <div class="list-item">✅ योजना आवेदन करना</div>
+        </div>
+
+        <!-- SCHEMES TAB -->
+        <div id="tab-schemes" class="card tab-content" style="display:none;">
+            <h2>श्रमिक कार्ड की मुख्य योजनाएं</h2>
+            <p class="subtitle">लेबर कार्ड / श्रमिक कार्ड धारकों के लिए प्रमुख लाभ:</p>
+
+            <div class="list-item">
+                ⏩ बेटे के जन्म होने पर लगभग <span class="highlight">₹26,000</span> का अनुदान दिया जाता है।
+            </div>
+
+            <div class="list-item">
+                ⏩ बेटी के जन्म होने पर लगभग <span class="highlight">₹31,000</span> का अनुदान  
+                एवं लगभग <span class="highlight">₹25,000</span> की अतिरिक्त सहायता दी जाती है।
+            </div>
+
+            <div class="list-item" style="margin-top:6px;">
+                <span class="highlight">यदि श्रमिक महिला है</span> तो ऊपर दी गई योजनाओं के साथ  
+                लगभग <span class="highlight">3 महीने की मजदूरी (₹20,000 से ₹25,000 तक)</span> अलग से दी जाती है।
+            </div>
+
+            <div class="list-item" style="margin-top:10px;">
+                ⏩ श्रमिक की पुत्री की शादी हेतु <span class="highlight">कन्या विवाह योजना</span> के अंतर्गत  
+                श्रम विभाग की ओर से लगभग <span class="highlight">₹65,000</span> की अनुदान राशि दी जाती है।
+            </div>
+
+            <div class="list-item" style="margin-top:10px;">
+                ⏩ <span class="highlight">संत रविदास शिक्षा योजना</span> के तहत यदि श्रमिक की संतान  
+                कक्षा <span class="highlight">9, 10, 11, 12</span> में पढ़ रही है तो  
+                लगभग <span class="highlight">₹4,500</span> की साइकिल सब्सिडी  
+                एवं कुछ राशि छात्रवृत्ति के रूप में दी जाती है।
+            </div>
+
+            <p style="font-size:12px; margin-top:12px; color:#555;">
+                नोट: सभी योजनाएं शासन/श्रम विभाग की वर्तमान नियमावली और पात्रता के अनुसार लागू होती हैं।
+            </p>
+        </div>
+
+        <!-- ABOUT TAB -->
+        <div id="tab-about" class="card tab-content" style="display:none;">
+            <h2>About</h2>
+            <p class="subtitle">ISHANT Technology / जन सेवा केंद्र के बारे में जानकारी:</p>
+            <p style="font-size:14px; line-height:1.6;">
+                मेरा नाम <b>कुलदीप कुमार सिंह</b> है और मैं एक डिजिटल सर्विसेज प्रोवाइडर हूँ  
+                (जन सेवा केंद्र संचालक)। मैं ऐसी अनेक ऑनलाइन और ऑफलाइन सेवाएँ प्रदान करता हूँ  
+                जो हर जन सेवा केंद्र पर उपलब्ध नहीं होतीं। हमारा लक्ष्य है कि  
+                <b>कम से कम शुल्क पर, तेज और सही सेवा</b> हर ज़रूरतमंद तक पहुँचे।
+            </p>
+        </div>
+
+        <!-- CONTACT TAB -->
+        <div id="tab-contact" class="card tab-content" style="display:none;">
+            <h2>Contact</h2>
+            <p class="subtitle">संपर्क केवल WhatsApp के माध्यम से:</p>
+
+            <p class="list-item">📲 WhatsApp: <b>9454238343</b></p>
+            <p class="list-item">📲 WhatsApp: <b>9569615494</b></p>
+
+            <p style="font-size:13px; margin-top:8px;">
+                किसी भी श्रमिक पंजीकरण या डिजिटल सेवा के लिए ऊपर दिए गए नंबरों पर  
+                WhatsApp संदेश भेजें। कॉल की बजाय केवल WhatsApp पर ही संपर्क किया जाए।
+            </p>
+        </div>
+
+        <!-- LIST TAB -->
+        <div id="tab-list" class="card tab-content" style="display:none;">
+            <h2>श्रमिक पंजीकरण सूची</h2>
+            <p class="subtitle">
+                नीचे इस ब्राउज़र से किए गए श्रमिक पंजीकरण की सूची दिखाई जाएगी।
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>क्रम</th>
+                        <th>श्रमिक नाम</th>
+                        <th>जन्म तिथि</th>
+                        <th>आधार नं</th>
+                        <th>मोबाइल नं</th>
+                        <th>तहसील</th>
+                        <th>ब्लॉक</th>
+                        <th>पिन कोड</th>
+                        <th>पूरा पता</th>
+                        <th>आवेदक नाम</th>
+                        <th>आवेदक मोबाइल</th>
+                        <th>चेक</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="dataBody">
+                    <!-- JS से rows आएंगी -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            © 2025 Ishant Technology. All rights reserved.
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOATING CHOICE BUTTON -->
+    <div class="wa-float">
+        <button class="wa-main-btn" id="waMainBtn">WhatsApp पर संपर्क करें</button>
+        <div class="wa-popup" id="waPopup">
+            <div class="wa-popup-header">किस नंबर पर WhatsApp करें?</div>
+            <button class="wa-number-btn" data-wa="919454238343">WhatsApp – 9454238343</button>
+            <button class="wa-number-btn" data-wa="919569615494">WhatsApp – 9569615494</button>
+            <div class="wa-close" id="waClose">बंद करें</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 👉 आपका नया Google Apps Script Web App URL
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzJCxbRDPX2rNULHZcvC8bw7EVaMnEJRKcydLY-1YnwH9R2Ur79M26Ta0m1Vc4IS_L_Ng/exec";
+
+        // सिर्फ रेफरेंस के लिए ID अलग से (जरूरत पड़े तो Apps Script के अंदर use कर सकते हैं)
+        const SCRIPT_DEPLOYMENT_ID = "AKfycbzJCxbRDPX2rNULHZcvC8bw7EVaMnEJRKcydLY-1YnwH9R2Ur79M26Ta0m1Vc4IS_L_Ng";
+
+        let shramikData = [];
+
+        // TAB HANDLING
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        function showTab(tabName) {
+            tabLinks.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabName);
+            });
+            tabContents.forEach(card => {
+                card.style.display = card.id === 'tab-' + tabName ? 'block' : 'none';
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        tabLinks.forEach(btn => {
+            btn.addEventListener('click', () => {
+                showTab(btn.dataset.tab);
+            });
+        });
+
+        // WHATSAPP FLOAT
+        const waMainBtn = document.getElementById('waMainBtn');
+        const waPopup = document.getElementById('waPopup');
+        const waClose = document.getElementById('waClose');
+
+        waMainBtn.addEventListener('click', () => {
+            waPopup.style.display = waPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        waClose.addEventListener('click', () => {
+            waPopup.style.display = 'none';
+        });
+
+        document.querySelectorAll('.wa-number-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const waNumber = btn.getAttribute('data-wa');
+                const message = encodeURIComponent("नमस्ते, मुझे श्रमिक पंजीकरण / डिजिटल सेवा की जानकारी चाहिए।");
+                const waLink = `https://wa.me/${waNumber}?text=${message}`;
+                window.open(waLink, '_blank');
+            });
+        });
+
+        // FORM + GOOGLE SHEET SAVE
+        const form = document.getElementById('shramikForm');
+        const mobileInput = document.getElementById('mobile');
+        const mobileStatus = document.getElementById('mobileStatus');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const dataBody = document.getElementById('dataBody');
+
+        // मोबाइल नंबर चेक (10 digit)
+        mobileInput.addEventListener('input', () => {
+            const val = mobileInput.value.trim();
+            if (val.length === 0) {
+                mobileStatus.textContent = "";
+                mobileStatus.className = "status-text";
+                return;
+            }
+            if (/^\d{10}$/.test(val)) {
+                mobileStatus.textContent = "मोबाइल नंबर सही है";
+                mobileStatus.className = "status-text ok";
+            } else {
+                mobileStatus.textContent = "कृपया 10 अंकों का मोबाइल नंबर दर्ज करें";
+                mobileStatus.className = "status-text error";
+            }
+        });
+
+        // टेबल रेंडर
+        function renderTable() {
+            dataBody.innerHTML = "";
+            shramikData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${row.workerName}</td>
+                    <td>${row.dob}</td>
+                    <td>${row.aadhaar}</td>
+                    <td>${row.mobile}</td>
+                    <td>${row.tehsil}</td>
+                    <td>${row.block}</td>
+                    <td>${row.pincode}</td>
+                    <td>${row.address}</td>
+                    <td>${row.applicantName}</td>
+                    <td>${row.applicantMobile}</td>
+                    <td class="check-cell"><input type="checkbox"></td>
+                    <td class="delete-cell"><button class="del-btn" data-index="${index}">Delete</button></td>
+                `;
+                dataBody.appendChild(tr);
+            });
+
+            // Delete बटन इवेंट
+            document.querySelectorAll('.del-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.getAttribute('data-index'), 10);
+                    if (!isNaN(idx)) {
+                        // सिर्फ local list से delete (Sheet से delete अलग से Apps Script में करना पड़ेगा)
+                        shramikData.splice(idx, 1);
+                        renderTable();
+                    }
+                });
+            });
+        }
+
+        // FORM SUBMIT -> GOOGLE SHEET
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            formMessage.textContent = "";
+            formMessage.className = "form-message";
+            submitBtn.disabled = true;
+            submitBtn.textContent = "सेव हो रहा है...";
+
+            const formData = new FormData(form);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.text())
+            .then(text => {
+                // यहाँ Apps Script से जो भी text आया, उसे दिखा सकते हैं
+                formMessage.textContent = "पंजीकरण सफलतापूर्वक सेव हो गया है।";
+                formMessage.className = "form-message ok";
+
+                // Local list में भी add कर दो
+                const rowObj = {
+                    workerName: formData.get('workerName') || "",
+                    dob: formData.get('dob') || "",
+                    aadhaar: formData.get('aadhaar') || "",
+                    mobile: formData.get('mobile') || "",
+                    tehsil: formData.get('tehsil') || "",
+                    block: formData.get('block') || "",
+                    pincode: formData.get('pincode') || "",
+                    address: formData.get('address') || "",
+                    applicantName: formData.get('applicantName') || "",
+                    applicantMobile: formData.get('applicantMobile') || ""
+                };
+                shramikData.push(rowObj);
+                renderTable();
+
+                form.reset();
+                mobileStatus.textContent = "";
+            })
+            .catch(err => {
+                console.error(err);
+                formMessage.textContent = "कुछ त्रुटि हुई, कृपया दोबारा प्रयास करें।";
+                formMessage.className = "form-message error";
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "पंजीकरण सेव करें";
+            });
+        });
+
+        // अगर बाद में Sheet से LIST लाना हो तो यहाँ GET कॉल बना सकते हैं
+        // उदाहरण (Apps Script में GET हैंडल करना पड़ेगा):
+        /*
+        function loadListFromSheet() {
+            fetch(SCRIPT_URL + '?action=getAll')
+                .then(res => res.json())
+                .then(data => {
+                    shramikData = data || [];
+                    renderTable();
+                })
+                .catch(err => console.error(err));
+        }
+        // loadListFromSheet();
+        */
+    </script>
+</body>
+</html>
